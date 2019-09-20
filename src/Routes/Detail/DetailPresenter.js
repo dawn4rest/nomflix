@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 
-import Section from "Components/Section";
 import Loader from "Components/Loader";
 import Message from "Components/Message";
 
@@ -71,8 +71,13 @@ const Overview = styled.p`
 const DetailPresenter = ({ result, error, loading }) =>
   loading ? (
     <Loader />
+  ) : error ? (
+    <Message color="#e74c3c" text={error} />
   ) : (
     <Container>
+      <Helmet>
+        <title>{result.title ? result.title : result.name} | Nomflix</title>
+      </Helmet>
       <Backdrop
         bgImage={`https://image.tmdb.org/t/p/original${result.backdrop_path}`}
       />
@@ -88,13 +93,15 @@ const DetailPresenter = ({ result, error, loading }) =>
           <Title>{result.title ? result.title : result.name}</Title>
           <ItemContainer>
             <Item>
-              {result.release_date
-                ? result.release_date.substring(0, 4)
-                : result.first_air_date.substring(0, 4)}
+              {result.release_date ? result.release_date.substring(0, 4) : ""}
+              {result.first_air_date
+                ? result.first_air_date.substring(0, 4)
+                : ""}
             </Item>
             <Divider>•</Divider>
             <Item>
-              {result.runtime ? result.runtime : result.episode_run_time[0]} min
+              {result.runtime ? result.runtime : ""}
+              {result.episode_run_time ? result.episode_run_time : ""} min
             </Item>
             <Divider>•</Divider>
             <Item>
@@ -109,7 +116,6 @@ const DetailPresenter = ({ result, error, loading }) =>
           <Overview>{result.overview}</Overview>
         </Data>
       </Content>
-      {error && <Message color="#e74c3c" text={error} />}
     </Container>
   );
 

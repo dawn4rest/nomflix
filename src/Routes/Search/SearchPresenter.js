@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 
 import Poster from "Components/Poster";
 import Section from "Components/Section";
@@ -43,6 +44,9 @@ const SearchPresenter = ({
       <Loader />
     ) : (
       <>
+        <Helmet>
+          <title>{searchTerm ? searchTerm : "Search"} | Nomflix</title>
+        </Helmet>
         {movieResults && movieResults.length > 0 && (
           <Section title="Movie Results">
             {movieResults.map(movie => (

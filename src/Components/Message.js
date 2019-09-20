@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Helmet from "react-helmet";
 
 const Container = styled.div`
   width: 100vw;
@@ -14,6 +15,9 @@ const Text = styled.span`
 
 const Message = ({ text, color }) => (
   <Container>
+    <Helmet>
+      <title> Error | Nomflix</title>
+    </Helmet>
     <Text color={color}>{text}</Text>
   </Container>
 );
