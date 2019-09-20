@@ -8,7 +8,7 @@ import Loader from "Components/Loader";
 import Message from "Components/Message";
 
 const Container = styled.div`
-  padding: 0px 20px;
+  padding: 20px;
 `;
 
 const TVPresenter = ({ topRated, airingToday, popular, error, loading }) =>
